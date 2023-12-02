@@ -34,9 +34,7 @@ class Day02 {
 					}
 				}
 			}
-			if (validGame) {
-				part1 += gameNum;
-			}
+			part1 += validGame ? gameNum : 0;
 			part2 += (minDice["red"] * minDice["green"] * minDice["blue"]);
 		}
 	}
