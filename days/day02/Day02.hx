@@ -1,5 +1,6 @@
 package days.day02;
 
+import haxe.ds.Map;
 import sys.io.File;
 
 using StringTools;
@@ -7,16 +8,19 @@ using StringTools;
 class Day02 {
 	public function new() {}
 
-	function part1(rawData:Array<String>):Int {
+	var part1 = 0;
+	var part2 = 0;
+
+	function parse_games(rawData:Array<String>) {
 		var maxDice:Map<String, Int> = ["red" => 12, "green" => 13, "blue" => 14];
 
-		var finalValue:Int = 0;
-
 		for (game in rawData) {
+			var validGame:Bool = true;
+			var minDice:Map<String, Int> = ["red" => 0, "green" => 0, "blue" => 0];
+
 			var lineSplit = game.split(": ");
 			var gameNum = Std.parseInt(lineSplit[0].split(" ")[1]);
 
-			var validGame:Bool = true;
 			for (round in lineSplit[1].split("; ")) {
 				for (dice in round.split(", ")) {
 					var color = StringTools.replace(dice.split(" ")[1], "\r", "");
@@ -24,49 +28,23 @@ class Day02 {
 
 					if (count > maxDice[color]) {
 						validGame = false;
-						break;
 					}
-				}
-				if (!validGame) {
-					break;
-				}
-			}
-			if (validGame) {
-				finalValue += gameNum;
-			}
-		}
-
-		return finalValue;
-	}
-
-	function part2(rawData:Array<String>):Int {
-		var minDice:Map<String, Int> = ["red" => 0, "green" => 0, "blue" => 0];
-
-		var finalValue:Int = 0;
-
-		for (game in rawData) {
-			var lineSplit = game.split(": ");
-
-			for (round in lineSplit[1].split("; ")) {
-				for (dice in round.split(", ")) {
-					var color = StringTools.replace(dice.split(" ")[1], "\r", "");
-					var count = Std.parseInt(dice.split(" ")[0]);
-
 					if (count > minDice[color]) {
 						minDice[color] = count;
 					}
 				}
 			}
-			finalValue += (minDice["red"] * minDice["green"] * minDice["blue"]);
-			minDice = ["red" => 0, "green" => 0, "blue" => 0];
+			if (validGame) {
+				part1 += gameNum;
+			}
+			part2 += (minDice["red"] * minDice["green"] * minDice["blue"]);
 		}
-
-		return finalValue;
 	}
 
 	public function runDay() {
 		var input = File.getContent("inputs/02/input").split("\n");
-		trace("partOne: " + part1(input));
-		trace("partTwo: " + part2(input));
+		parse_games(input);
+		trace("partOne: " + part1);
+		trace("partTwo: " + part2);
 	}
 }
