@@ -2,7 +2,7 @@ package;
 
 class Main {
     public static function main() {
-        var today = new Day02();
+        var today = new Day03();
         today.runDay();
     }
 }

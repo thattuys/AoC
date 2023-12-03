@@ -18,7 +18,7 @@ class Day00 {
 	}
 
 	public function runDay() {
-        //File.getContent("Day0#/input").split("\n")
+        //File.getContent("inputs/01/input-test").split("\n")
 		trace("partOne: " + part1([""]));
 		trace("partTwo: " + part2([""]));
 	}
