@@ -10,9 +10,7 @@ typedef Vec2 = {
 }
 
 class Day03 {
-
-	public function new() {
-	}
+	public function new() {}
 
 	function build_number(pos:Vec2, data:Array<Array<String>>, part:String, validNumbers:Map<String, Int>) {
 		var number:String = "";
@@ -77,7 +75,7 @@ class Day03 {
 	}
 
 	function part1(rawData:Array<String>):Int {
-		var validNumbers:Map<String, Int> = new Map<String, Int>(); 
+		var validNumbers:Map<String, Int> = new Map<String, Int>();
 		var dataMatrix = new Array<Array<String>>();
 		for (i in rawData) {
 			dataMatrix.push(i.split(""));
