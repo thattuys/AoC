@@ -2,7 +2,8 @@ package;
 
 class Main {
     public static function main() {
-        var today = new Day03();
-        today.runDay();
+        //new Day01().runDay();
+        //new Day02().runDay();
+        new Day03().runDay();
     }
 }
