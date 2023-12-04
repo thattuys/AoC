@@ -6,12 +6,10 @@ import sys.io.File;
 using StringTools;
 
 class Day02 {
-	public function new() {}
+	static var part1 = 0;
+	static var part2 = 0;
 
-	var part1 = 0;
-	var part2 = 0;
-
-	function parse_games(rawData:Array<String>) {
+	static function parse_games(rawData:Array<String>) {
 		var maxDice:Map<String, Int> = ["red" => 12, "green" => 13, "blue" => 14];
 
 		for (game in rawData) {
@@ -39,7 +37,7 @@ class Day02 {
 		}
 	}
 
-	public function runDay() {
+	static public function runDay() {
 		var input = File.getContent("inputs/02/input").split("\n");
 		parse_games(input);
 		trace("partOne: " + part1);

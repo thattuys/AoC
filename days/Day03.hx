@@ -5,12 +5,10 @@ import sys.io.File;
 using StringTools;
 
 class Day03 {
-	var part1:Int = 0;
-	var part2:Int = 0;
+	static var part1:Int = 0;
+	static var part2:Int = 0;
 
-	public function new() {}
-
-	function build_number(y:Int, x:Int, data:Array<Array<String>>, part:String, validNumbers:Map<String, Int>) {
+	static function build_number(y:Int, x:Int, data:Array<Array<String>>, part:String, validNumbers:Map<String, Int>) {
 		var number:String = "";
 
 		// It is not a number
@@ -41,7 +39,7 @@ class Day03 {
 		return;
 	}
 
-	function find_adjacent_numbers(y:Int, x:Int, data:Array<Array<String>>, part:String, dataMap:Map<String, Int>) {
+	static function find_adjacent_numbers(y:Int, x:Int, data:Array<Array<String>>, part:String, dataMap:Map<String, Int>) {
 		if (x > 0 && y > 0) // Top Left
 			build_number(y - 1, x - 1, data, part, dataMap);
 
@@ -67,7 +65,7 @@ class Day03 {
 			build_number(y, x - 1, data, part, dataMap);
 	}
 
-	function calculate(dataMatrix:Array<Array<String>>) {
+	static function calculate(dataMatrix:Array<Array<String>>) {
 		var numberCords:Array<String> = new Array<String>();
 
 		for (y in 0...dataMatrix.length - 1) {
@@ -97,7 +95,7 @@ class Day03 {
 		}
 	}
 
-	public function runDay() {
+	static public function runDay() {
 		var rawData = File.getContent("inputs/03/input").replace("\r", "").split("\n");
 		var dataMatrix = new Array<Array<String>>();
 		for (i in rawData)

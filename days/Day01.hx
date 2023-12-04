@@ -3,9 +3,7 @@ package days;
 import sys.io.File;
 
 class Day01 {
-	public function new() {}
-
-	function getNumStr(num:String):String {
+	static function getNumStr(num:String):String {
 		var numStr = "";
 		switch (num) {
 			case "one": numStr = "1";
@@ -22,7 +20,7 @@ class Day01 {
 		return numStr;
 	}
 
-	function getMatches(ereg:EReg, input:String, index:Int = 0):Array<String> {
+	static function getMatches(ereg:EReg, input:String, index:Int = 0):Array<String> {
 		var matches = [];
 		while (ereg.match(input)) {
 			matches.push(getNumStr(ereg.matched(index)));
@@ -31,7 +29,7 @@ class Day01 {
 		return matches;
 	}
 
-	function get_result(rawData:Array<String>, regexp:EReg):Int {
+	static function get_result(rawData:Array<String>, regexp:EReg):Int {
 		var finalValue:Int = 0;
 
 		for (line in rawData) {
@@ -43,7 +41,7 @@ class Day01 {
 		return finalValue;
 	}
 
-	public function runDay() {
+	static public function runDay() {
 		//var inputs = File.getContent("inputs/01/input-test").split("\n");
 		var inputs = File.getContent("inputs/01/input").split("\n");
 		trace("partOne: " + get_result(inputs, ~/[0-9]/));

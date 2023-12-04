@@ -5,12 +5,10 @@ import sys.io.File;
 using StringTools;
 
 class Day04 {
-	public function new() {}
+	static var part1:Int = 0;
+	static var part2:Int = 0;
 
-	var part1:Int = 0;
-	var part2:Int = 0;
-
-	function calculate_winnings(rawData:Array<String>) {
+	static function calculate_winnings(rawData:Array<String>) {
 		var cards:Array<Int> = [for (i in 0...rawData.length) 1];
 
 		for (card in 0...rawData.length) {
@@ -35,7 +33,7 @@ class Day04 {
 		}
 	}
 
-	public function runDay() {
+	static public function runDay() {
 		var rawData = File.getContent("inputs/04/input").replace("  ", " ").replace("\r", "").split("\n");
 		calculate_winnings(rawData);
 		trace("partOne: " + part1);
