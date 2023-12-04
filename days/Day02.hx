@@ -1,4 +1,4 @@
-package days.day02;
+package days;
 
 import haxe.ds.Map;
 import sys.io.File;

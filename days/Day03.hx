@@ -1,4 +1,4 @@
-package days.day03;
+package days;
 
 import sys.io.File;
 
