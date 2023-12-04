@@ -14,7 +14,7 @@ class Day04 {
 		var cards:Array<Int> = [for (i in 0...rawData.length) 1];
 
 		for (card in 0...rawData.length) {
-			var cleanedLine = rawData[card].replace("  ", " ").replace("  ", " ").replace("\r\n", "").split(": ")[1].split(" | ");
+			var cleanedLine = rawData[card].split(": ")[1].split(" | ");
 			var winnings = cleanedLine[0].split(" ");
 			var cardNumbers = cleanedLine[1].split(" ");
 
@@ -36,7 +36,7 @@ class Day04 {
 	}
 
 	public function runDay() {
-		var rawData = File.getContent("inputs/04/input").replace("\r", "").split("\n");
+		var rawData = File.getContent("inputs/04/input").replace("  ", " ").replace("\r", "").split("\n");
 		calculate_winnings(rawData);
 		trace("partOne: " + part1);
 		trace("partTwo: " + part2);
