@@ -31,11 +31,8 @@ class Day04 {
 				cards[card + i + 1] += 1 * cards[card];
 			}
 
+			part2 += cards[card];
 			part1 += cardVal;
-		}
-
-		for (i in cards) {
-			part2 += i;
 		}
 	}
 
