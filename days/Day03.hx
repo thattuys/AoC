@@ -11,7 +11,6 @@ class Day03 {
 	static function build_number(y:Int, x:Int, data:Array<Array<String>>, part:String, validNumbers:Map<String, Int>) {
 		var number:String = "";
 
-		// It is not a number
 		if (!~/[0-9]/.match(data[y][x]))
 			return;
 
@@ -22,6 +21,9 @@ class Day03 {
 			}
 		}
 
+		if (validNumbers.exists("Y:" + y + "X:" + x))
+			return;
+
 		// Run regex from our position and check to see if it is a number, if it is we append it to number
 		while (~/[0-9]/.match(data[y][x])) {
 			number += data[y][x];
@@ -30,39 +32,10 @@ class Day03 {
 				break;
 		}
 
-		// Check to see if number had anything written to it and that the key does not exist in valid numbers
-		if (number.length != 0 && !validNumbers.exists("Y:" + y + "X:" + x)) {
-			// Convert our number to an int and store it in our map
+		if (number.length != 0)
 			validNumbers["Y:" + y + "X:" + x] = Std.parseInt(number);
-		}
 
 		return;
-	}
-
-	static function find_adjacent_numbers(y:Int, x:Int, data:Array<Array<String>>, part:String, dataMap:Map<String, Int>) {
-		if (x > 0 && y > 0) // Top Left
-			build_number(y - 1, x - 1, data, part, dataMap);
-
-		if (y > 0) // Top
-			build_number(y - 1, x, data, part, dataMap);
-
-		if (y > 0 && x < data[y].length - 1) // Top Right
-			build_number(y - 1, x + 1, data, part, dataMap);
-
-		if (x < data[y].length - 1) // Right
-			build_number(y, x + 1, data, part, dataMap);
-
-		if (y < data.length - 1 && x < data[y].length - 1) // Bottom Right
-			build_number(y + 1, x + 1, data, part, dataMap);
-
-		if (y < data.length - 1) // Bottom
-			build_number(y + 1, x, data, part, dataMap);
-
-		if (y < data[y].length - 1 && x > 0) // Bottom Left
-			build_number(y + 1, x - 1, data, part, dataMap);
-
-		if (x > 0) // Left
-			build_number(y, x - 1, data, part, dataMap);
 	}
 
 	static function calculate(dataMatrix:Array<Array<String>>) {
@@ -74,7 +47,15 @@ class Day03 {
 					var matches:Map<String, Int> = new Map<String, Int>();
 					var firstGear:Int = 0;
 
-					find_adjacent_numbers(y, x, dataMatrix, dataMatrix[y][x], matches);
+					for (yy in -1...2) {
+						if (y + yy >= dataMatrix.length || y + yy < 0)
+							continue;
+						for (xx in -1...2) {
+							if (x + xx >= dataMatrix[y].length || x + xx < 0)
+								continue;
+							build_number(y + yy, x + xx, dataMatrix, dataMatrix[y][x], matches);
+						}
+					}
 
 					for (key in matches.keys()) {
 						if (!numberCords.contains(key)) {
