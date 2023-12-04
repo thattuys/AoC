@@ -21,7 +21,7 @@ class Day02 {
 
 			for (round in lineSplit[1].split("; ")) {
 				for (dice in round.split(", ")) {
-					var color = StringTools.replace(dice.split(" ")[1], "\r", "");
+					var color = dice.split(" ")[1];
 					var count = Std.parseInt(dice.split(" ")[0]);
 
 					if (count > maxDice[color]) {
@@ -38,7 +38,7 @@ class Day02 {
 	}
 
 	static public function runDay() {
-		var input = File.getContent("inputs/02/input").split("\n");
+		var input = File.getContent("inputs/02/input").replace("\r", "").split("\n");
 		parse_games(input);
 		trace("partOne: " + part1);
 		trace("partTwo: " + part2);
