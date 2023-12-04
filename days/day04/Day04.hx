@@ -14,10 +14,9 @@ class Day04 {
 		var cards:Array<Int> = [for (i in 0...rawData.length) 1];
 
 		for (card in 0...rawData.length) {
-			var cleanedLine = rawData[card].replace("  ", " ").replace("  ", " ").replace("\r\n", "").split(": ")[1];
-			var splitCard = cleanedLine.split(" | ");
-			var winnings = splitCard[0].split(" ");
-			var cardNumbers = splitCard[1].split(" ");
+			var cleanedLine = rawData[card].replace("  ", " ").replace("  ", " ").replace("\r\n", "").split(": ")[1].split(" | ");
+			var winnings = cleanedLine[0].split(" ");
+			var cardNumbers = cleanedLine[1].split(" ");
 
 			var wins = 0;
 			var cardVal = 0;
@@ -31,8 +30,8 @@ class Day04 {
 				cards[card + i + 1] += 1 * cards[card];
 			}
 
-			part2 += cards[card];
 			part1 += cardVal;
+			part2 += cards[card];
 		}
 	}
 
